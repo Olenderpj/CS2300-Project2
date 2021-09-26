@@ -26,7 +26,7 @@ public class Main {
 
                 //TODO: Test this once the array length is confirmed by the professor.
                 //implicit.testIfPointIsOnLine();
-
+                System.out.print("\nDistance from point: ");
                 for (OrderedPair orderedpair: implicit.getOrderedPairsList()){
                     implicit.testIfPointIsOnLine(orderedpair);
                 }

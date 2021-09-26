@@ -13,9 +13,22 @@ public class Parametric extends LoggingUtils{
         }
     }
 
-    //TODO: Print implicit form
+    //TODO: Print implicit form - Finish this method.
     public void printImplicitForm(){
+        System.out.println("Parametric -> Implicit:");
+        // Construct the initial vector
+        var resultingVector = new Vector()
+                .setA(v1 - p1)
+                .setB(v2 - p2);
 
+        // construct the perpendicular vector
+        var perpendicularVector = new Vector()
+                .setA(-1 *(resultingVector.getB()))
+                .setB(resultingVector.getA());
+
+        double c;
+
+        //System.out.printf("\n%.2fa + %.2fb + %.2f = 0", );
     }
 
     // returns true if all the values exist and none are empty

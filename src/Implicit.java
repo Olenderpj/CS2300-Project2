@@ -61,7 +61,7 @@ public class Implicit extends LoggingUtils{
 
     public void printPointNormalForm(){
 
-        //TODO: The coeffecientB value that is printed here is incorrect - Figure out why!
+        //TODO: The coefficientB value that is printed here is incorrect - Figure out why!
         double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
         System.out.printf("\t%.1fa + %.1fb + %s = 0", (coefficientA / magnitudeA), (coefficientB/ magnitudeA), String.format("%.2f", coefficientC / magnitudeA));
     }
