@@ -61,11 +61,30 @@ public class Implicit extends LoggingUtils{
 
     public void printPointNormalForm(){
 
+        //TODO: The coeffecientB value that is printed here is incorrect - Figure out why!
+        double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
+        System.out.printf("\t%.1fa + %.1fb + %s = 0", (coefficientA / magnitudeA), (coefficientB/ magnitudeA), String.format("%.2f", coefficientC / magnitudeA));
     }
 
-    public void printDistanceFromPoint(){
+    public double testIfPointIsOnLine(OrderedPair orderedPair){
+        double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
+        double numeratorFormula = (coefficientA * orderedPair.getX() + coefficientB * orderedPair.getY() - coefficientC);
 
+        double result = numeratorFormula / magnitudeA;
+
+        System.out.printf("\n\t%s %s", orderedPair, checkIfPointIsOnTheLine(result));
+
+        return result;
     }
+
+    private String checkIfPointIsOnTheLine(double value){
+        if(value == 0){
+            return "The point is on the line.";
+        } else{
+            return " to the point is " + String.format("%.2f", value);
+        }
+    }
+
 
 
     // returns true if all the values exist and none are empty

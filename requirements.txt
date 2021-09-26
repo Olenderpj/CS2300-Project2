@@ -1,8 +1,10 @@
 1. Display parametric or implicit
 
 2. TODO: Display the other form of the line.  EX: If parametric, Show the implicit form of the line
+        * Complete for implicit
 
 3. TODO: Print the Point-Normal Form of the line
+        * Complete for implicit
 
 4. TODO: For each of the 3 points (ordered pairs)
     - print the points

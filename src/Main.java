@@ -12,7 +12,7 @@ public class Main {
             String[] rowData = information.split(" ");
 
             if (arrayContains(rowData, "i")){
-                System.out.println("Implicit:");
+                System.out.println("Implicit Form:");
                 Implicit implicit = new Implicit()
                         .setCoefficientA(Double.parseDouble(rowData[1]))
                         .setCoefficientB(Double.parseDouble(rowData[2]))
@@ -21,11 +21,20 @@ public class Main {
 
                 implicit.printFormula();
                 implicit.printParametricForm();
+                System.out.println("\nPoint Normal Form:");
+                implicit.printPointNormalForm();
+
+                //TODO: Test this once the array length is confirmed by the professor.
+                //implicit.testIfPointIsOnLine();
+
+                for (OrderedPair orderedpair: implicit.getOrderedPairsList()){
+                    implicit.testIfPointIsOnLine(orderedpair);
+                }
 
             System.out.println();
 
             } else if (arrayContains(rowData, "p")){
-                System.out.println("Parametric:\n ");
+                System.out.println("Parametric Form:\n ");
                 //TODO: Complete parametric class
             }
         }
