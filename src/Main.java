@@ -3,6 +3,9 @@ import java.util.Objects;
 
 public class Main {
 
+    public static final int parametricArrayLength = 10;
+    public static final int implicitArrayLength = 9;
+
     public static void main(String[] args) {
         FileUtils fileUtils = new FileUtils()
                 .setFileName("testInput.txt");
@@ -54,12 +57,20 @@ public class Main {
     }
 
     public static ArrayList<OrderedPair> buildOrderedPairsList (String[] array){
-        // build ordered pairs
-        ArrayList<OrderedPair> orderedPairsList = new ArrayList<>();
+        var orderedPairList = new ArrayList<OrderedPair>();
 
-        for (int i = 5; i < array.length; i += 2){
-            orderedPairsList.add(new OrderedPair(Double.parseDouble(array[i]), Double.parseDouble(array[i + 1])));
+        int orderedPairStart = 3;
+
+        if (array.length == parametricArrayLength){
+            orderedPairStart = 4;
         }
-        return orderedPairsList;
+
+        for (int i = orderedPairStart; i < array.length; i+=2){
+            if ((i+1 < array.length)) {
+                var orderedPair = new OrderedPair(Double.parseDouble(array[i]), Double.parseDouble(array[i + 1]));
+                orderedPairList.add(orderedPair);
+            }
+        }
+        return orderedPairList;
     }
 }

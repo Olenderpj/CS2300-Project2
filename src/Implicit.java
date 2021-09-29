@@ -67,10 +67,11 @@ public class Implicit extends LoggingUtils{
     }
 
     public double testIfPointIsOnLine(OrderedPair orderedPair){
-        double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
-        double numeratorFormula = (coefficientA * orderedPair.getX() + coefficientB * orderedPair.getY() - coefficientC);
+        double magnitude = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2))); // Correct
 
-        double result = numeratorFormula / magnitudeA;
+        double numerator = (coefficientA * orderedPair.getX() + coefficientB * orderedPair.getY() - coefficientC);
+
+        double result = numerator / magnitude;
 
         System.out.printf("\n\t%s %s", orderedPair, checkIfPointIsOnTheLine(result));
 
