@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Implicit extends LoggingUtils{
@@ -61,28 +62,31 @@ public class Implicit extends LoggingUtils{
 
     public void printPointNormalForm(){
 
-        //TODO: The coefficientB value that is printed here is incorrect - Figure out why!
         double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
         System.out.printf("\t%.1fa + %.1fb + %s = 0", (coefficientA / magnitudeA), (coefficientB/ magnitudeA), String.format("%.2f", coefficientC / magnitudeA));
     }
 
     public double testIfPointIsOnLine(OrderedPair orderedPair){
-        double magnitude = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2))); // Correct
+        BigDecimal result = BigDecimal.ZERO;
+        result = result.add(BigDecimal.valueOf(coefficientA * orderedPair.getX()));
+        result = result.add(BigDecimal.valueOf(coefficientB * orderedPair.getY()));
 
-        double numerator = (coefficientA * orderedPair.getX() + coefficientB * orderedPair.getY() - coefficientC);
+        // if coefficient c is negative, then just add the negative value
+        if (coefficientC < 0) {
+            result = result.add(BigDecimal.valueOf(coefficientC));
+        }else {
+            result = result.subtract(BigDecimal.valueOf(coefficientC));
+        }
+        System.out.printf("\n\t%s %s", orderedPair, checkIfPointIsOnTheLine(result.doubleValue()));
 
-        double result = numerator / magnitude;
-
-        System.out.printf("\n\t%s %s", orderedPair, checkIfPointIsOnTheLine(result));
-
-        return result;
+        return result.doubleValue();
     }
 
     private String checkIfPointIsOnTheLine(double value){
         if(value == 0){
             return "The point is on the line.";
         } else{
-            return " to the point is " + String.format("%.2f", value);
+            return "To the point is " + String.format("%.2f", value);
         }
     }
 
