@@ -1,27 +1,27 @@
 public class Vector {
-    private double B;
-    private double A;
+    private double v1;
+    private double v2;
 
-    public double getB() {
-        return B;
+    public double getV1() {
+        return v1;
     }
 
-    public double getA() {
-        return A;
+    public double getV2() {
+        return v2;
     }
 
-    public Vector setB(double B) {
-        this.B = B;
+    public Vector setV1(double B) {
+        this.v1 = B;
         return this;
     }
 
-    public Vector setA(double A) {
-        this.A = A;
+    public Vector setV2(double A) {
+        this.v2 = A;
         return this;
     }
 
     @Override
     public String toString() {
-        return "[" + A + " " + B + "]";
+        return "[" + v2 + " " + v1 + "]";
     }
 }

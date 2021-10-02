@@ -42,8 +42,8 @@ public class Implicit extends LoggingUtils{
         double B = Math.abs(coefficientB);
 
         var vector = new Vector()
-                .setA(coefficientA)
-                .setB(coefficientB);
+                .setV2(coefficientA)
+                .setV1(coefficientB);
 
         var point = new Point();
 
@@ -56,7 +56,7 @@ public class Implicit extends LoggingUtils{
         }
 
         System.out.println("Implicit -> Parametric:");
-        System.out.printf("\tl(t) = [%.2f, %.2f] + t[%.2f, %.2f]", point.getP1(), point.getP2(), vector.getB(), (vector.getA() * -1));
+        System.out.printf("\tl(t) = [%.2f, %.2f] + t[%.2f, %.2f]", point.getP1(), point.getP2(), vector.getV1(), (vector.getV2() * -1));
     }
 
     public void printPointNormalForm(){
@@ -85,7 +85,6 @@ public class Implicit extends LoggingUtils{
             return " to the point is " + String.format("%.2f", value);
         }
     }
-
 
 
     // returns true if all the values exist and none are empty

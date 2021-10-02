@@ -16,7 +16,7 @@ public class Main {
 
             if (arrayContains(rowData, "i")){
                 System.out.println("Implicit Form:");
-                Implicit implicit = new Implicit()
+                var implicit = new Implicit()
                         .setCoefficientA(Double.parseDouble(rowData[1]))
                         .setCoefficientB(Double.parseDouble(rowData[2]))
                         .setCoefficientC(Double.parseDouble(rowData[3]))
@@ -37,7 +37,14 @@ public class Main {
             System.out.println();
 
             } else if (arrayContains(rowData, "p")){
-                System.out.println("Parametric Form:\n ");
+                System.out.println();
+                var parametric = new Parametric()
+                        .setP(new Vector().setV1(Double.parseDouble(rowData[1])).setV2(Double.parseDouble(rowData[2])))
+                        .setV(new Vector().setV1(Double.parseDouble(rowData[3])).setV2(Double.parseDouble(rowData[4])))
+                        .setOrderedPairsList(null);
+
+                parametric.printFormula();
+
                 //TODO: Complete parametric class
             }
         }
