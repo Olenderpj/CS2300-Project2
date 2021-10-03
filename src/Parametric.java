@@ -12,7 +12,7 @@ public class Parametric extends LoggingUtils{
 
     //TODO: Print implicit form - Finish this method.
     public void printImplicitForm(){
-        System.out.println("Parametric -> Implicit:");
+
 
         var vectorA = new Vector()
                 .setV1(-1 * (v.getV2()))
@@ -35,9 +35,13 @@ public class Parametric extends LoggingUtils{
         return new Implicit()
                 .setCoefficientA(vectorA.getV2())
                 .setCoefficientB(vectorA.getV1())
-                .setCoefficientC(c);
+                .setCoefficientC(c)
+                .setOrderedPairsList(orderedPairsList);
     }
 
+    public ArrayList<OrderedPair> getOrderedPairsList() {
+        return orderedPairsList;
+    }
 
     public Parametric setP(Vector p) {
         this.p = p;

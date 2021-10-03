@@ -71,6 +71,7 @@ public class Implicit extends LoggingUtils{
 
         double numerator = (coefficientA * orderedPair.getX() + coefficientB * orderedPair.getY() - coefficientC);
 
+
         double result = numerator / magnitude;
 
         System.out.printf("\n\t%s %s", orderedPair, checkIfPointIsOnTheLine(result));
