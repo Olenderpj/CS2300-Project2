@@ -63,30 +63,28 @@ public class Implicit extends LoggingUtils{
 
         //TODO: The coefficientB value that is printed here is incorrect - Figure out why!
         double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
-        System.out.printf("\t%.1fa + %.1fb + %s = 0", (coefficientA / magnitudeA), (coefficientB/ magnitudeA), String.format("%.2f", coefficientC / magnitudeA));
+        System.out.printf("\t%.1fx1 + %.1fx + %s = 0", (coefficientA / magnitudeA), (coefficientB/ magnitudeA), String.format("%.2f", coefficientC / magnitudeA));
     }
 
     public double testIfPointIsOnLine(OrderedPair orderedPair){
-        double magnitude = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2))); // Correct
+        double termA = (coefficientA * orderedPair.x);
+        double termB = (coefficientB * orderedPair.y);
+        double termC = Math.abs(coefficientC);
 
-        double numerator = (coefficientA * orderedPair.getX() + coefficientB * orderedPair.getY() - coefficientC);
 
-
-        double result = numerator / magnitude;
+        double result = termA + termB - termC;
 
         System.out.printf("\n\t%s %s", orderedPair, checkIfPointIsOnTheLine(result));
-
         return result;
     }
 
     private String checkIfPointIsOnTheLine(double value){
         if(value == 0){
-            return "The point is on the line.";
+            return " to the line is "+ String.format("%.2f", value) + " The point is on the line";
         } else{
-            return " to the point is " + String.format("%.2f", value);
+            return " to the line is " + String.format("%.2f", value);
         }
     }
-
 
     // returns true if all the values exist and none are empty
     private boolean allValuesPersisted(){

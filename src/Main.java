@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -22,7 +23,7 @@ public class Main {
                         .setCoefficientA(Double.parseDouble(rowData[1]))
                         .setCoefficientB(Double.parseDouble(rowData[2]))
                         .setCoefficientC(Double.parseDouble(rowData[3]))
-                        .setOrderedPairsList(buildOrderedPairsList(rowData));
+                        .setOrderedPairsList(buildOrderedPairsList(rowData, 4));
 
                 // print the different formulas starting with the implicit form.
                 implicit.printFormula();
@@ -44,7 +45,7 @@ public class Main {
                 var parametric = new Parametric()
                         .setP(new Vector().setV1(Double.parseDouble(rowData[1])).setV2(Double.parseDouble(rowData[2])))
                         .setV(new Vector().setV1(Double.parseDouble(rowData[3])).setV2(Double.parseDouble(rowData[4])))
-                        .setOrderedPairsList(buildOrderedPairsList(rowData));
+                        .setOrderedPairsList(buildOrderedPairsList(rowData, 5));
 
                 // print the different formulas
                 parametric.printFormula();
@@ -80,20 +81,12 @@ public class Main {
     }
 
     // build an array of ordered pair objects from the given arrays. (this data comes after vector or point data)
-    public static ArrayList<OrderedPair> buildOrderedPairsList (String[] array){
-        var orderedPairList = new ArrayList<OrderedPair>();
-        int orderedPairStart = 3;
+    public static ArrayList<OrderedPair> buildOrderedPairsList (String[] array, int startPoint){
+        var orderedPairs = new ArrayList<OrderedPair>();
 
-        if (array.length == parametricArrayLength){
-            orderedPairStart = 4;
+        for (int i = startPoint; i < array.length; i += 2){
+            orderedPairs.add(new OrderedPair(Double.parseDouble(array[i]), Double.parseDouble(array[i + 1])));
         }
-
-        for (int i = orderedPairStart; i < array.length; i+=2){
-            if ((i+1 < array.length)) {
-                var orderedPair = new OrderedPair(Double.parseDouble(array[i]), Double.parseDouble(array[i + 1]));
-                orderedPairList.add(orderedPair);
-            }
-        }
-        return orderedPairList;
+        return orderedPairs;
     }
 }
