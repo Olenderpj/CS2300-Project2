@@ -6,7 +6,10 @@ public class Implicit extends LoggingUtils{
     private double coefficientC;
     private ArrayList<OrderedPair> orderedPairsList;
 
-    public void printFormula(){
+    /**
+     * Prints out the implicit form of the line
+     */
+    public void printImplicitFormula(){
         if (!allValuesPersisted()){
             printMissingValueError();
 
@@ -59,13 +62,19 @@ public class Implicit extends LoggingUtils{
         System.out.printf("\tl(t) = [%.2f, %.2f] + t[%.2f, %.2f]", point.getP1(), point.getP2(), vector.getV1(), (vector.getV2() * -1));
     }
 
+    /**
+    // calculate the norm of the vector, then divide all coefficients by the norm
+     */
     public void printPointNormalForm(){
-
-        //TODO: The coefficientB value that is printed here is incorrect - Figure out why!
-        double magnitudeA = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
-        System.out.printf("\t%.1fx1 + %.1fx + %s = 0", (coefficientA / magnitudeA), (coefficientB/ magnitudeA), String.format("%.2f", coefficientC / magnitudeA));
+        double vectorNorm = Math.sqrt((Math.pow(coefficientA, 2)) + (Math.pow(coefficientB, 2)));
+        System.out.printf("\t%.1fx1 + %.1fx + %s = 0", (coefficientA / vectorNorm), (coefficientB/ vectorNorm), String.format("%.2f", coefficientC / vectorNorm));
     }
 
+    /**
+     * Using the implicit form of a line, the distance of an ordered pair can be tested to determine if it lies on the line.
+     * @param orderedPair
+     * @return
+     */
     public double testIfPointIsOnLine(OrderedPair orderedPair){
 
         double resultAX = coefficientA * orderedPair.getX();
@@ -78,9 +87,16 @@ public class Implicit extends LoggingUtils{
 
     }
 
+    /**
+     * If the parameter is equivlant to 0, then the point is on the line and a message is printed to the screen. Otherwise
+     * the distance from the point to the line is printed.
+     * @param value
+     * @return
+     */
+
     private String checkIfPointIsOnTheLine(double value){
         if(value == 0){
-            return " to the line is "+ String.format("%.2f", value) + " The point is on the line";
+            return " to the line is "+ String.format("%.2f", value) + ", The point is on the line";
         } else{
             return " to the line is " + String.format("%.2f", value);
         }
@@ -89,18 +105,6 @@ public class Implicit extends LoggingUtils{
     // returns true if all the values exist and none are empty
     private boolean allValuesPersisted(){
         return !Double.isNaN(coefficientA) || !Double.isNaN(coefficientB) || !Double.isNaN(coefficientC);
-    }
-
-    public double getCoefficientA() {
-        return coefficientA;
-    }
-
-    public double getCoefficientB() {
-        return coefficientB;
-    }
-
-    public double getCoefficientC() {
-        return coefficientC;
     }
 
     public ArrayList<OrderedPair> getOrderedPairsList() {
